@@ -1,6 +1,7 @@
 "use client";
 import { Car } from "@/lib/types";
 import Link from "next/link";
+import CarImage from "@/components/CarImage";
 
 interface CarCardProps { car: Car; onCompare?: (car: Car) => void; isComparing?: boolean; }
 
@@ -31,6 +32,9 @@ export default function CarCard({ car, onCompare, isComparing }: CarCardProps) {
           </div>
           <span className="text-sm font-semibold text-emerald-400">{formatPrice(car.msrp)}</span>
         </div>
+      </div>
+      <div className="relative h-48 bg-slate-100 border-b border-slate-200">
+        <CarImage car={car} className="object-contain p-2" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
       </div>
       <div className="grid grid-cols-3 gap-px bg-slate-100">
         <SpecBadge label="HP" value={car.horsepower} />

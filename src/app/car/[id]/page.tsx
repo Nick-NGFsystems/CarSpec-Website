@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { getAffiliateLinks } from "@/lib/affiliates";
 import Link from "next/link";
+import CarImage from "@/components/CarImage";
 
 export default async function CarDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -17,6 +18,9 @@ export default async function CarDetailPage({ params }: { params: Promise<{ id: 
         <h1 className="text-3xl font-bold text-white mt-1">{car.make} {car.model}</h1>
         {car.trim && <p className="text-lg text-slate-300 mt-1">{car.trim}</p>}
         {car.msrp && <p className="text-2xl font-bold text-emerald-400 mt-4">${car.msrp.toLocaleString()} <span className="text-sm font-normal text-slate-400">MSRP</span></p>}
+      </div>
+      <div className="relative h-72 sm:h-80 rounded-xl overflow-hidden border border-slate-200 shadow-sm mb-8 bg-slate-100">
+        <CarImage car={car} priority className="object-contain p-3" sizes="(max-width: 768px) 100vw, 1024px" />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         {[["Horsepower", car.horsepower, " hp"],["Torque", car.torque, " lb-ft"],["0–60 mph", car.zeroToSixty, "s"],["Combined MPG", car.combinedMpg, car.fuelType === "electric" ? " MPGe" : " mpg"]].map(([label, value, suffix]) => (

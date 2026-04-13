@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Car } from "@/lib/types";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import CarImage from "@/components/CarImage";
 
 const SPECS = [
   { key: "year", label: "Year" }, { key: "trim", label: "Trim" }, { key: "bodyStyle", label: "Body Style" },
@@ -46,6 +47,9 @@ export default function ComparePage() {
                 {cars.map(car => (
                   <th key={car.id} className="text-center px-5 py-4 min-w-[180px]">
                     <Link href={"/car/" + car.id} className="hover:text-blue-300 transition-colors">
+                      <div className="relative h-20 rounded-lg overflow-hidden border border-slate-600/60 mb-3 bg-slate-700/50">
+                        <CarImage car={car} className="object-contain p-1" sizes="200px" />
+                      </div>
                       <p className="text-xs text-slate-400">{car.year}</p>
                       <p className="text-lg font-bold text-white">{car.make} {car.model}</p>
                       {car.trim && <p className="text-sm text-slate-300">{car.trim}</p>}
