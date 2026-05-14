@@ -67,7 +67,7 @@ export default function ComparePage() {
                   <tr key={row.key} className="hover:bg-slate-50">
                     <td className="px-5 py-3 text-sm text-slate-500 font-medium">{row.label}</td>
                     {cars.map(car => {
-                      const v = (car as Record<string,unknown>)[row.key];
+                      const v = (car as unknown as Record<string,unknown>)[row.key];
                       const isBest = row.hi && v != null && v === best;
                       return (
                         <td key={car.id} className={"px-5 py-3 text-sm text-center font-medium capitalize " + (isBest ? "text-emerald-600 font-bold" : "text-slate-900")}>
