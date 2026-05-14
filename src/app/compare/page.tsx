@@ -60,7 +60,7 @@ export default function ComparePage() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {SPECS.map(row => {
-                const vals = cars.map(c => (c as Record<string,unknown>)[row.key] as number);
+                const vals = cars.map(c => (c as unknown as Record<string,unknown>)[row.key] as number);
                 const nums = vals.filter(v => v != null);
                 const best = row.hi && nums.length ? (row.lo ? Math.min(...nums) : Math.max(...nums)) : null;
                 return (
