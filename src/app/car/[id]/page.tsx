@@ -25,7 +25,7 @@ export default async function CarDetailPage({ params }: { params: Promise<{ id: 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
         {[["Horsepower", car.horsepower, " hp"],["Torque", car.torque, " lb-ft"],["0–60 mph", car.zeroToSixty, "s"],["Combined MPG", car.combinedMpg, car.fuelType === "electric" ? " MPGe" : " mpg"]].map(([label, value, suffix]) => (
           <div key={String(label)} className="bg-white rounded-xl shadow-sm border border-slate-200 px-4 py-5 text-center">
-            <p className="text-2xl font-bold text-slate-900">{value != null ? value + suffix : "—"}</p>
+            <p className="text-2xl font-bold text-slate-900">{value != null ? `${value}${suffix}` : "—"}</p>
             <p className="text-xs text-slate-500 mt-1">{label}</p>
           </div>
         ))}
